@@ -1,0 +1,43 @@
+name: Bug Report
+description: รายงาน bug หรือปัญหาที่พบ
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: รายละเอียด
+      description: อธิบายปัญหาที่พบ
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: ขั้นตอนการ Reproduce
+      description: ขั้นตอนที่ทำให้เกิดปัญหา
+      placeholder: |
+        1. รันคำสั่ง '...'
+        2. ได้ผลลัพธ์ '...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: ผลลัพธ์ที่คาดหวัง
+      description: อธิบายว่าควรจะเป็นอย่างไร
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      placeholder: "3.12"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "macOS 15, Ubuntu 24.04, etc."
+    validations:
+      required: true

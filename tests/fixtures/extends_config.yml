@@ -1,0 +1,4 @@
+profiles:
+  extended-default:
+    extends: default
+    extra_instructions: "Also check docstrings"

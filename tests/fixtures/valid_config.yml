@@ -1,0 +1,13 @@
+default_profile: security
+claude_model: sonnet
+comment:
+  enabled: true
+  mode: update
+profiles:
+  myprofile:
+    description: "Test profile"
+    system_role: "test reviewer"
+    rules:
+      - "Be concise"
+    checks:
+      - "Check bugs"

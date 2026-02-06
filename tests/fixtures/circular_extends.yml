@@ -1,0 +1,7 @@
+profiles:
+  alpha:
+    extends: beta
+    description: "alpha"
+  beta:
+    extends: alpha
+    description: "beta"

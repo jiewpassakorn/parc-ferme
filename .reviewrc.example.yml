@@ -1,0 +1,44 @@
+# .reviewrc.yml - Configuration for parc-ferme
+# Place this file in your project root or at ~/.config/parc-ferme/.reviewrc.yml
+
+# Default profile when --profile is not specified
+default_profile: angular
+
+# Optional: override the Claude model (e.g., sonnet, opus, haiku)
+# claude_model: sonnet
+
+# Review timeout in seconds (default: 300)
+# review_timeout: 600
+
+# Auto-comment settings
+comment:
+  enabled: false          # Set to true to always post comments
+  mode: create            # "create" (new comment) or "update" (edit last)
+
+# Custom profiles (merged with built-in: default, security, performance, angular)
+profiles:
+  # Example: extend the built-in angular profile with project-specific instructions
+  # angular:
+  #   extends: angular
+  #   extra_instructions: |
+  #     This project uses Module Federation with @angular-architects/module-federation.
+  #     Pay special attention to:
+  #     - Shared module configuration changes
+  #     - Remote entry point exports
+  #     - Shared singleton services
+
+  # Example: fully custom profile
+  # finiq:
+  #   description: "FinIQ project-specific review"
+  #   system_role: "senior Angular/TypeScript code reviewer specializing in financial software"
+  #   rules:
+  #     - "Only flag REAL issues, not style preferences"
+  #     - "Be concise, no filler, no praise"
+  #     - "If no issues found, just say: LGTM"
+  #   checks:
+  #     - "Stored procedure calls: incorrect parameter ordering, missing error handling"
+  #     - "Financial calculations: floating point precision issues, rounding errors"
+  #     - "Module Federation: shared module config, remote entry exports"
+  #     - "Angular: Missing OnDestroy cleanup, improper change detection"
+  #     - "Security: XSS, injection, exposed secrets"
+  #   output_format: "[SEVERITY] file:line — description"
