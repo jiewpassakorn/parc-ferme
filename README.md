@@ -15,14 +15,14 @@ Automated PR code reviews using Claude AI.
 
 ```bash
 # วิธีแนะนำ: ติดตั้งผ่าน pipx (ใช้ได้ทั่วระบบ)
-pipx install git+https://github.com/passakorn/parc-ferme.git
+pipx install git+https://github.com/jiewpassakorn/parc-ferme.git
 ```
 
 <details>
 <summary>วิธีอื่น (สำหรับ development)</summary>
 
 ```bash
-git clone https://github.com/passakorn/parc-ferme.git
+git clone https://github.com/jiewpassakorn/parc-ferme.git
 cd parc-ferme
 make install
 
