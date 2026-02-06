@@ -131,3 +131,29 @@ def test_load_config_default_timeout():
 def test_load_config_invalid_timeout_raises():
     with pytest.raises(ConfigError, match="Invalid review_timeout"):
         load_config(str(FIXTURES_DIR / "invalid_timeout_config.yml"))
+
+
+def test_load_config_negative_timeout_raises():
+    with pytest.raises(ConfigError, match="must be a positive integer"):
+        load_config(str(FIXTURES_DIR / "negative_timeout_config.yml"))
+
+
+def test_load_config_zero_timeout_raises():
+    with pytest.raises(ConfigError, match="must be a positive integer"):
+        load_config(str(FIXTURES_DIR / "zero_timeout_config.yml"))
+
+
+# --- claude_model validation ---
+
+
+def test_load_config_invalid_model_raises():
+    with pytest.raises(ConfigError, match="Invalid claude_model"):
+        load_config(str(FIXTURES_DIR / "invalid_model_config.yml"))
+
+
+def test_load_config_model_null_is_allowed():
+    with patch(
+        "parc_ferme.config._discover_config_files", return_value=[]
+    ):
+        config = load_config()
+    assert config["claude_model"] is None

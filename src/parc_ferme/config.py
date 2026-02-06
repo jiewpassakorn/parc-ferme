@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -162,15 +163,29 @@ def load_config(explicit_path: str | None = None) -> dict[str, Any]:
         if "default_profile" in data:
             merged["default_profile"] = data["default_profile"]
         if "claude_model" in data:
-            merged["claude_model"] = data["claude_model"]
+            model = data["claude_model"]
+            if model is not None:
+                model = str(model)
+                if not re.match(r'^[a-zA-Z0-9][a-zA-Z0-9._-]*$', model):
+                    raise ConfigError(
+                        f"Invalid claude_model: '{model}' "
+                        "(only alphanumeric, dots, hyphens, and underscores allowed)"
+                    )
+            merged["claude_model"] = model
         if "review_timeout" in data:
             try:
-                merged["review_timeout"] = int(data["review_timeout"])
+                timeout = int(data["review_timeout"])
             except (ValueError, TypeError):
                 raise ConfigError(
                     f"Invalid review_timeout value: '{data['review_timeout']}' "
-                    "(must be an integer)"
+                    "(must be a positive integer)"
                 )
+            if timeout <= 0:
+                raise ConfigError(
+                    f"Invalid review_timeout value: {timeout} "
+                    "(must be a positive integer)"
+                )
+            merged["review_timeout"] = timeout
         if "comment" in data and isinstance(data["comment"], dict):
             merged["comment"].update(data["comment"])
         if "profiles" in data and isinstance(data["profiles"], dict):
