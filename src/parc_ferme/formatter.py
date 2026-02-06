@@ -86,5 +86,5 @@ def format_comment(
         f"---\n\n"
         f"{review}\n\n"
         f"---\n"
-        f"*Automated review by parc-ferme*"
+        f"*AI-powered review by parc-ferme (using Claude)*"
     )
